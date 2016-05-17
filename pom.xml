@@ -5,6 +5,48 @@
     <artifactId>dnsjnio-demo</artifactId>
     <version>1.0.5</version>
     <packaging>jar</packaging>
+    <name>dnsjnio-demo</name>
+    <description>Demo files for dnsjnio framework.</description>
+    <inceptionYear>2007</inceptionYear>
+    
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.7</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
+    </properties>
+    
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    
+    <developers>
+        <developer>
+            <id>alexd_nom</id>
+            <name>Alex Dalitz</name>
+            <email>alex@caerkettontech.com</email>
+            <roles>
+                <role>Project Owner</role>
+                <role>Developer</role>
+            </roles>
+        </developer>
+        <developer>
+            <id>jyeary</id>
+            <name>John Yeary</name>
+            <email>jyeary@bluelotussoftware.com</email>
+            <organization>Blue Lotus Software, LLC.</organization>
+            <organizationUrl>http://www.bluelotussoftware.com</organizationUrl>
+            <url>http://javaevangelist.blogspot.com</url>
+            <timezone>-6</timezone>
+            <roles>
+                <role>Developer</role>
+            </roles>
+        </developer>
+    </developers>
+    
     <dependencies>
         <dependency>
             <groupId>dnsjava</groupId>
@@ -17,11 +59,5 @@
             <version>1.0.5-SNAPSHOT</version>
         </dependency>
     </dependencies>
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>1.7</maven.compiler.source>
-        <maven.compiler.target>1.7</maven.compiler.target>
-    </properties>
-    <name>dnsjnio-demo</name>
-    <description>Demo files for dnsjnio framework.</description>
+ 
 </project>

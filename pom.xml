@@ -54,9 +54,9 @@
             <version>2.0.8</version>
         </dependency>
         <dependency>
-            <groupId>${project.groupId}</groupId>
+            <groupId>uk.nominet</groupId>
             <artifactId>dnsjnio</artifactId>
-            <version>1.0.5-SNAPSHOT</version>
+            <version>1.0.4</version>
         </dependency>
     </dependencies>
  

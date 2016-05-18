@@ -16,16 +16,15 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and 
 limitations under the License.
  */
-import org.xbill.DNS.*;
-import uk.nominet.dnsjnio.*;
-
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.FileNotFoundException;
 import java.text.MessageFormat;
 import java.util.ArrayList;
+import org.xbill.DNS.*;
+import uk.nominet.dnsjnio.*;
 
 /**
  * This class acts as a simple demo for the dnsjnio extension. It loads the file
@@ -51,6 +50,7 @@ public class DemoClient {
     }
 
     public void demo(String[] args) throws Exception {
+        System.out.println("dnsjnio version: " + Version.VERSION);
         String name = filename;
         if (args.length == 1) {
             name = args[0];
@@ -65,7 +65,7 @@ public class DemoClient {
         System.out.println("Sending all the queries asynchronously");
         long startTime = System.nanoTime();
         int ctr = 0;
-        
+
         for (String unresolved : toResolve) {
             System.out.println("Querying for " + unresolved);
             try {

@@ -95,7 +95,7 @@ public class DemoClient {
         long endTime = System.nanoTime();
         long time = ((endTime - startTime) / 1000000);
 
-        System.out.println(MessageFormat.format("Received {0} responses, and {1} errors (most likely timeouts) in {2}s", goodCount, errorCount, time));
+        System.out.println(MessageFormat.format("Received {0} responses, and {1} errors (most likely timeouts) in {2}ms", goodCount, errorCount, time));
         if (errorCount + goodCount < ctr) {
             System.out.println(MessageFormat.format("ERROR : {0} queries did not return!!", ctr - (errorCount + goodCount)));
         }

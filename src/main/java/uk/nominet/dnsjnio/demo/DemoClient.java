@@ -1,5 +1,3 @@
-package uk.nominet.dnsjnio.demo;
-
 /*
 Copyright 2007 Nominet UK
 Copyright 2016 Blue Lotus Software, LLC.
@@ -16,11 +14,8 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and 
 limitations under the License.
  */
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+package uk.nominet.dnsjnio.demo;
+
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import org.xbill.DNS.*;
@@ -55,7 +50,7 @@ public class DemoClient {
         if (args.length == 1) {
             name = args[0];
         }
-        ArrayList<String> toResolve = loadFile(name);
+        ArrayList<String> toResolve = Utils.loadFile(name);
         resolver = new NonblockingResolver();
         resolver.setTimeout(30);
         resolver.setTCP(true);
@@ -69,7 +64,7 @@ public class DemoClient {
         for (String unresolved : toResolve) {
             System.out.println("Querying for " + unresolved);
             try {
-                Message message = makeQuery(unresolved, ctr);
+                Message message = Utils.makeQuery(unresolved, ctr);
                 resolver.sendAsync(message, ctr, responseQueue);
                 ctr++;
             } catch (TextParseException e) {
@@ -101,41 +96,4 @@ public class DemoClient {
         }
     }
 
-    private Message makeQuery(String nameString, int id) throws TextParseException {
-        Name name = Name.fromString(nameString, Name.root);
-        Record question = Record.newRecord(name, Type.A, DClass.ANY);
-        Message query = Message.newQuery(question);
-        query.getHeader().setID(id);
-        return query;
-    }
-
-    public ArrayList<String> loadFile(String fileName) throws Exception {
-        if ((fileName == null) || (fileName.isEmpty())) {
-            throw new IllegalArgumentException();
-        }
-
-        String line;
-        ArrayList<String> fileList = new ArrayList<>();
-        BufferedReader in;
-        try {
-            in = new BufferedReader(new FileReader(fileName));
-        } catch (FileNotFoundException e) {
-            try {
-                in = new BufferedReader(new FileReader("demo" + java.io.File.separator + fileName));
-            } catch (FileNotFoundException ex) {
-                throw new FileNotFoundException(MessageFormat.format("Can't find {0} or demo{1}{2}", fileName, File.separator, fileName));
-            }
-        }
-
-        if (!in.ready()) {
-            throw new IOException();
-        }
-
-        while ((line = in.readLine()) != null) {
-            fileList.add(line);
-        }
-
-        in.close();
-        return fileList;
-    }
 }

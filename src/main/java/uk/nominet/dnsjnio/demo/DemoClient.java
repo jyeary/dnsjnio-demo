@@ -33,7 +33,7 @@ import uk.nominet.dnsjnio.*;
  */
 public class DemoClient {
 
-    final String filename = "to_resolve.txt";
+    final String filename = "to_resolve_50k.txt";
     NonblockingResolver resolver;
 
     public static void main(String[] args) throws Exception {

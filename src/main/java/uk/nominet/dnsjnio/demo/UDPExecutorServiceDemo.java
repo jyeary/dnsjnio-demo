@@ -17,6 +17,7 @@ package uk.nominet.dnsjnio.demo;
 
 import java.net.UnknownHostException;
 import java.text.MessageFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
@@ -79,12 +80,15 @@ public class UDPExecutorServiceDemo {
         }
         System.out.println(MessageFormat.format("Sending {0} queries asynchronously", demo.getCounter().get()));
 
-        long endTime = System.currentTimeMillis() + 30000;
-        while (System.currentTimeMillis() < endTime) {
+        //Setting the timeout to 2 x the resolver timeout.
+        long timeout = System.currentTimeMillis() + (demo.getResolver().getTimeoutMillis() * 2);
+        while (System.currentTimeMillis() < timeout) {
             demo.getIncomingExecutorService().submit(new UDPReceiver(demo.getResponseQueue(),
                     demo.getGoodCounter(), demo.getBadCounter(), demo.getMessages(), demo.getResponses()));
         }
 
+        //TODO We could do something with the results at this point, or requeue messages that failed.
+        
         demo.generateStatistics();
 
         demo.getIncomingExecutorService().shutdownNow();

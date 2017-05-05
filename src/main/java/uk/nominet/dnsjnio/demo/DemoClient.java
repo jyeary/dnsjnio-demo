@@ -37,7 +37,12 @@ import uk.nominet.dnsjnio.*;
  *
  */
 public class DemoClient {
-
+    
+    // Using the top 50,000 web sites ranked in Alexa.com
+    // Please use the following series of shell commands to get this up-to-date:
+    // $ curl -O http://s3.amazonaws.com/alexa-static/top-1m.csv.zip
+    // $ unzip -o top-1m.csv.zip top-1m.csv
+    // $ head -50000 top-1m.csv | cut -d, -f2 | cut -d/ -f1 | while read L; do echo $L; done > to_resolve.txt
     final String filename = "to_resolve.txt";
     NonblockingResolver resolver;
 
@@ -58,8 +63,8 @@ public class DemoClient {
         ArrayList<String> toResolve = loadFile(name);
         resolver = new NonblockingResolver();
         resolver.setTimeout(30);
-        resolver.setTCP(true);
-        resolver.setSingleTcpPort(true);
+        resolver.setTCP(false);
+        resolver.setSingleTcpPort(false);
         ResponseQueue responseQueue = new ResponseQueue();
 
         System.out.println("Sending all the queries asynchronously");

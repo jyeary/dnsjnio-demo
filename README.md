@@ -5,6 +5,6 @@ from the project, and install it in your local Maven repository. This can be acc
 using the following command where the **-Dfile=** location is the path to the jar file to install.
 
 ```bash
-mvn install:install-file -Dfile=dnsjnio-1.0.4.jar -DgroupId=uk.nominet \
--DartifactId=dnsjnio -Dversion=1.0.4 -Dpackaging=jar
+mvn install:install-file -Dfile=dnsjnio-1.0.5.jar -DgroupId=uk.nominet \
+-DartifactId=dnsjnio -Dversion=1.0.5 -Dpackaging=jar
 ```
